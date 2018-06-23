@@ -1,0 +1,29 @@
+{
+  "name": "generator-kips",
+  "version": "1.0.0",
+  "description": "Personal stack for @tusharmath",
+  "scripts": {},
+  "author": "Tushar Mathur <tusharmath@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0",
+    "prettier": "^1.13.5",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "@types/node": "^10.3.5",
+    "@types/yeoman-generator": "^2.0.3",
+    "yeoman-generator": "^2.0.5"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
