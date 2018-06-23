@@ -1,5 +1,7 @@
 # Kips
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tusharmath/kips.svg)](https://greenkeeper.io/)
+
 Personal yeoman generator to create OS projects.
 
 # Stack
