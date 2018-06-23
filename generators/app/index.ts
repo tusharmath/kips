@@ -48,7 +48,9 @@ export = class extends Generator {
         test: 'mocha --require=ts-node/register test/*.ts',
         prepublishOnly: 'tsc -d',
         'semantic-release': 'semantic-release',
-        'travis-deploy-once': 'travis-deploy-once'
+        'travis-deploy-once': 'travis-deploy-once',
+        prettier:
+          "git ls-files | grep '.ts$' | xargs prettier --write --config=.prettierrc"
       },
       author: 'Tushar Mathur <tusharmath@gmail.com>',
       license: 'ISC',
@@ -77,7 +79,8 @@ export = class extends Generator {
         'semantic-release',
         'travis-deploy-once',
         'ts-node',
-        'typescript'
+        'typescript',
+        'prettier'
       ],
       {
         'save-dev': true
