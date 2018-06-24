@@ -6,6 +6,7 @@
 
 import {createRepository} from './createRepository'
 import {execP} from './execP'
+import * as fs from 'fs-extra'
 import Generator = require('yeoman-generator')
 
 const TEMPLATE_FILES = [
@@ -111,18 +112,13 @@ export = class extends Generator {
     ]
   }
 
-  configuring() {
-    TEMPLATE_FILES.forEach(file => {
-      this.fs.copy(this.templatePath(`_${file}`), this.destinationPath(file))
-    })
+  /**
+   * Phase 1 (initializing)
+   */
 
-    this.fs.copyTpl(
-      this.templatePath('_README.md'),
-      this.destinationPath('README.md'),
-      {appname: this.appname, description: this.projectDescription}
-    )
-  }
-
+  /**
+   * Phase 2 (prompting)
+   */
   async prompting() {
     const {
       description,
@@ -136,22 +132,50 @@ export = class extends Generator {
     this.projectName = appName
   }
 
+  /**
+   * Phase 3 (configuring)
+   */
+  async configuring() {
+    TEMPLATE_FILES.forEach(file => {
+      this.fs.copy(this.templatePath(`_${file}`), this.destinationPath(file))
+    })
+
+    this.fs.copyTpl(
+      this.templatePath('_README.md'),
+      this.destinationPath('README.md'),
+      {appname: this.appname, description: this.projectDescription}
+    )
+  }
+
+  /**
+   * Phase 4 (default)
+   */
+
+  /**
+   * Phase 5 (writing)
+   */
   async writing() {
     const pkgJson = this._getPkgJson()
 
     // Extend or create package.json file in destination path
     this.fs.extendJSON(this.destinationPath('package.json'), pkgJson)
     await this._setupGitRepo()
+    await fs.mkdir(this.destinationPath('src'))
+    await fs.mkdir(this.destinationPath('test'))
   }
 
+  /**
+   * Phase 6 (conflicts)
+   */
+
+  /**
+   * Phase 7 (install)
+   */
   async install() {
-    await this.yarnInstall(this._projectDependencies(), {dev: true})
+    await this.npmInstall(this._projectDependencies(), {'save-dev': true})
   }
 
-  end() {
-    this.log('')
-    this.log('Go to the project directory and then run — ')
-    this.log('yarn install')
-    this.log('')
-  }
+  /**
+   * Phase 8 (end)
+   */
 }

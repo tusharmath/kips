@@ -6,14 +6,15 @@
   "author": "Tushar Mathur <tusharmath@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "cz-conventional-changelog": "^2.1.0",
-    "prettier": "^1.13.5",
-    "typescript": "^2.9.2",
     "@types/node": "^10.3.5",
-    "@types/yeoman-generator": "^2.0.3"
+    "@types/yeoman-generator": "^2.0.3",
+    "cz-conventional-changelog": "^2.1.0",
+    "typescript": "^2.9.2"
   },
   "dependencies": {
+    "@types/fs-extra": "^5.0.3",
     "axios": "^0.18.0",
+    "fs-extra": "^6.0.1",
     "yeoman-generator": "^2.0.5"
   },
   "files": [
