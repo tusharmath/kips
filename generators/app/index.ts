@@ -4,7 +4,9 @@
 
 'use strict'
 
-const Generator = require('yeoman-generator')
+import axios from 'axios'
+import Generator = require('yeoman-generator')
+import {createRepository} from './createRepository'
 
 const TEMPLATE_FILES = [
   '.gitignore',
@@ -14,7 +16,10 @@ const TEMPLATE_FILES = [
 ]
 
 export = class extends Generator {
-  private description?: string
+  private projectDescription?: string
+  private githubUsername?: string
+  private githubPassword?: string
+  private projectName?: string
   configuring() {
     TEMPLATE_FILES.forEach(file => {
       this.fs.copy(this.templatePath(`_${file}`), this.destinationPath(file))
@@ -23,26 +28,74 @@ export = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_README.md'),
       this.destinationPath('README.md'),
-      {appname: this.appname, description: this.description}
+      {appname: this.appname, description: this.projectDescription}
     )
   }
 
   async prompting() {
-    const {description} = await this.prompt([
+    const {
+      description,
+      githubUsername,
+      githubPassword,
+      appName
+    } = await this.prompt([
+      {
+        type: 'input',
+        name: 'appName',
+        message: 'Project name',
+        default: this.appname
+      },
       {
         type: 'input',
         name: 'description',
         message: 'Describe the project'
+      },
+      {
+        type: 'input',
+        name: 'githubUsername',
+        message: 'Github username',
+        store: true
+      },
+      {
+        type: 'password',
+        name: 'githubPassword',
+        message: 'Github password',
+        store: true
       }
     ])
-    this.description = description
+    this.projectDescription = description
+    this.githubUsername = githubUsername
+    this.githubPassword = githubPassword
+    this.projectName = appName
   }
 
-  writing() {
-    const pkgJson = {
-      name: this.appname,
+  async writing() {
+    const pkgJson = this._getPkgJson()
+
+    // Extend or create package.json file in destination path
+    this.fs.extendJSON(this.destinationPath('package.json'), pkgJson)
+
+    // creating Github Repository
+    await createRepository({
+      name: this.projectName as string,
+      username: this.githubUsername as string,
+      password: this.githubPassword as string,
+      description: this.projectDescription,
+      otp: () =>
+        this.prompt({
+          type: 'input',
+          name: 'otp',
+          message: 'Github two factor code'
+        }).then(_ => _.otp)
+    })
+    this.log('✔️  Remote repository created')
+  }
+
+  private _getPkgJson() {
+    return {
+      name: this.projectName,
       version: '0.0.0-development',
-      description: this.description,
+      description: this.projectDescription,
       main: 'index.js',
       scripts: {
         test: 'mocha --require=ts-node/register test/*.ts',
@@ -61,12 +114,9 @@ export = class extends Generator {
       },
       repository: {
         type: 'git',
-        url: `https://github.com/tusharmath/${this.appname}.git`
+        url: `https://github.com/tusharmath/${this.projectName}.git`
       }
     }
-
-    // Extend or create package.json file in destination path
-    this.fs.extendJSON(this.destinationPath('package.json'), pkgJson)
   }
 
   async install() {
@@ -86,5 +136,11 @@ export = class extends Generator {
         'save-dev': true
       }
     )
+  }
+  end () {
+    this.log('')
+    this.log('Go to the project directory and then run — ')
+    this.log('yarn install')
+    this.log('')
   }
 }
