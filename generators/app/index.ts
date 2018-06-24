@@ -38,17 +38,26 @@ export = class extends Generator {
       githubUsername,
       githubPassword,
       appName
-    } = await this.prompt([
+    } = await this.prompt(this._getQuestions())
+    this.projectDescription = description
+    this.githubUsername = githubUsername
+    this.githubPassword = githubPassword
+    this.projectName = appName
+  }
+
+  private _getQuestions() {
+    return [
       {
         type: 'input',
         name: 'appName',
         message: 'Project name',
-        default: this.appname
+        default: this.appname.split(' ').join('-')
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Describe the project'
+        message: 'Describe the project',
+        store: true
       },
       {
         type: 'input',
@@ -60,13 +69,9 @@ export = class extends Generator {
         type: 'password',
         name: 'githubPassword',
         message: 'Github password',
-        store: true
+        store: false
       }
-    ])
-    this.projectDescription = description
-    this.githubUsername = githubUsername
-    this.githubPassword = githubPassword
-    this.projectName = appName
+    ]
   }
 
   async writing() {
@@ -137,7 +142,7 @@ export = class extends Generator {
       }
     )
   }
-  end () {
+  end() {
     this.log('')
     this.log('Go to the project directory and then run — ')
     this.log('yarn install')
