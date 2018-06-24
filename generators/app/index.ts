@@ -4,10 +4,9 @@
 
 'use strict'
 
-import axios from 'axios'
-import Generator = require('yeoman-generator')
 import {createRepository} from './createRepository'
 import {execP} from './execP'
+import Generator = require('yeoman-generator')
 
 const TEMPLATE_FILES = [
   '.gitignore',
@@ -21,31 +20,6 @@ export = class extends Generator {
   private githubUsername?: string
   private githubPassword?: string
   private projectName?: string
-  configuring() {
-    TEMPLATE_FILES.forEach(file => {
-      this.fs.copy(this.templatePath(`_${file}`), this.destinationPath(file))
-    })
-
-    this.fs.copyTpl(
-      this.templatePath('_README.md'),
-      this.destinationPath('README.md'),
-      {appname: this.appname, description: this.projectDescription}
-    )
-  }
-
-  async prompting() {
-    const {
-      description,
-      githubUsername,
-      githubPassword,
-      appName
-    } = await this.prompt(this._getQuestions())
-    this.projectDescription = description
-    this.githubUsername = githubUsername
-    this.githubPassword = githubPassword
-    this.projectName = appName
-  }
-
   private _getQuestions() {
     return [
       {
@@ -74,15 +48,6 @@ export = class extends Generator {
       }
     ]
   }
-
-  async writing() {
-    const pkgJson = this._getPkgJson()
-
-    // Extend or create package.json file in destination path
-    this.fs.extendJSON(this.destinationPath('package.json'), pkgJson)
-    await this._setupGitRepo()
-  }
-
   private async _setupGitRepo() {
     // creating Github Repository
     await createRepository({
@@ -105,7 +70,6 @@ export = class extends Generator {
     )
     return this.log('✔️  Remote repository created')
   }
-
   private _getPkgJson() {
     return {
       name: this.projectName,
@@ -133,11 +97,6 @@ export = class extends Generator {
       }
     }
   }
-
-  async install() {
-    await this.yarnInstall(this._projectDependencies(), {dev: true})
-  }
-
   private _projectDependencies() {
     return [
       '@types/mocha',
@@ -150,6 +109,43 @@ export = class extends Generator {
       'typescript',
       'prettier'
     ]
+  }
+
+  configuring() {
+    TEMPLATE_FILES.forEach(file => {
+      this.fs.copy(this.templatePath(`_${file}`), this.destinationPath(file))
+    })
+
+    this.fs.copyTpl(
+      this.templatePath('_README.md'),
+      this.destinationPath('README.md'),
+      {appname: this.appname, description: this.projectDescription}
+    )
+  }
+
+  async prompting() {
+    const {
+      description,
+      githubUsername,
+      githubPassword,
+      appName
+    } = await this.prompt(this._getQuestions())
+    this.projectDescription = description
+    this.githubUsername = githubUsername
+    this.githubPassword = githubPassword
+    this.projectName = appName
+  }
+
+  async writing() {
+    const pkgJson = this._getPkgJson()
+
+    // Extend or create package.json file in destination path
+    this.fs.extendJSON(this.destinationPath('package.json'), pkgJson)
+    await this._setupGitRepo()
+  }
+
+  async install() {
+    await this.yarnInstall(this._projectDependencies(), {dev: true})
   }
 
   end() {
