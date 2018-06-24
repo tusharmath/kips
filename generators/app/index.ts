@@ -8,6 +8,7 @@ import {createRepository} from './createRepository'
 import {execP} from './execP'
 import * as fs from 'fs-extra'
 import Generator = require('yeoman-generator')
+import chalk from 'chalk'
 const debug = require('debug')('kips')
 
 const TEMPLATE_FILES = [
@@ -51,6 +52,9 @@ export = class extends Generator {
     ]
   }
   private async _setupGitRepo() {
+    const origin = `git@github.com:${this.githubUsername}/${
+      this.projectName
+    }.git`
     // creating Github Repository
     await createRepository({
       name: this.projectName as string,
@@ -65,12 +69,8 @@ export = class extends Generator {
         }).then(_ => _.otp)
     })
     await execP('git init')
-    await execP(
-      `git remote add origin git@github.com:${this.githubUsername}/${
-        this.projectName
-      }.git`
-    )
-    return this.log('✔️  Remote repository created')
+    await execP(`git remote add origin ${origin}`)
+    return this.log(chalk.green(`Repository ${origin}`))
   }
   private _getPkgJson() {
     return {
