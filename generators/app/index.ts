@@ -180,6 +180,8 @@ export = class extends Generator {
    */
   install() {
     debug('start: install')
+
+    // Poor choice of API where the promise never resolves
     this.yarnInstall(this._projectDependencies(), {dev: true})
     debug('stop: install')
   }
