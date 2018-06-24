@@ -97,8 +97,7 @@ export = class extends Generator {
           message: 'Github two factor code'
         }).then(_ => _.otp)
     })
-
-    // add remote
+    await execP('git init')
     await execP(
       `git remote add origin git@github.com:${this.githubUsername}/${
         this.projectName
