@@ -18,11 +18,19 @@ const TEMPLATE_FILES = [
   'tsconfig.json'
 ]
 
+type UserPrompts = {
+  keywords: string[]
+  projectDescription: string
+  githubUsername: string
+  githubPassword: string
+  projectName: string
+}
 export = class extends Generator {
-  private projectDescription?: string
-  private githubUsername?: string
-  private githubPassword?: string
-  private projectName?: string
+  private _props?: UserPrompts
+  private get props() {
+    if (!this._props) throw new Error('Input not completed')
+    return this._props
+  }
   private _getQuestions() {
     return [
       {
@@ -34,8 +42,12 @@ export = class extends Generator {
       {
         type: 'input',
         name: 'description',
-        message: 'Describe the project',
-        store: true
+        message: 'Describe the project'
+      },
+      {
+        type: 'input',
+        name: 'keywords',
+        message: 'Keywords'
       },
       {
         type: 'input',
@@ -52,15 +64,15 @@ export = class extends Generator {
     ]
   }
   private async _setupGitRepo() {
-    const origin = `git@github.com:${this.githubUsername}/${
-      this.projectName
+    const origin = `git@github.com:${this.props.githubUsername}/${
+      this.props.projectName
     }.git`
     // creating Github Repository
     await createRepository({
-      name: this.projectName as string,
-      username: this.githubUsername as string,
-      password: this.githubPassword as string,
-      description: this.projectDescription,
+      name: this.props.projectName as string,
+      username: this.props.githubUsername as string,
+      password: this.props.githubPassword as string,
+      description: this.props.projectDescription,
       otp: () =>
         this.prompt({
           type: 'input',
@@ -74,9 +86,9 @@ export = class extends Generator {
   }
   private _getPkgJson() {
     return {
-      name: this.projectName,
+      name: this.props.projectName,
       version: '0.0.0-development',
-      description: this.projectDescription,
+      description: this.props.projectDescription,
       main: 'index.js',
       scripts: {
         test: 'mocha --require=ts-node/register test/*.ts',
@@ -95,7 +107,7 @@ export = class extends Generator {
       },
       repository: {
         type: 'git',
-        url: `https://github.com/tusharmath/${this.projectName}.git`
+        url: `https://github.com/tusharmath/${this.props.projectName}.git`
       }
     }
   }
@@ -122,16 +134,7 @@ export = class extends Generator {
    */
   async prompting() {
     debug('start: prompting')
-    const {
-      description,
-      githubUsername,
-      githubPassword,
-      appName
-    } = await this.prompt(this._getQuestions())
-    this.projectDescription = description
-    this.githubUsername = githubUsername
-    this.githubPassword = githubPassword
-    this.projectName = appName
+    this._props = (await this.prompt(this._getQuestions())) as UserPrompts
     debug('stop: prompting')
   }
 
@@ -147,7 +150,7 @@ export = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_README.md'),
       this.destinationPath('README.md'),
-      {appname: this.appname, description: this.projectDescription}
+      {appname: this.appname, description: this.props.projectDescription}
     )
     debug('stop: configuring')
   }
