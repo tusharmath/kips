@@ -7,6 +7,7 @@
 import axios from 'axios'
 import Generator = require('yeoman-generator')
 import {createRepository} from './createRepository'
+import {execP} from './execP'
 
 const TEMPLATE_FILES = [
   '.gitignore',
@@ -79,7 +80,10 @@ export = class extends Generator {
 
     // Extend or create package.json file in destination path
     this.fs.extendJSON(this.destinationPath('package.json'), pkgJson)
+    await this._setupGitRepo()
+  }
 
+  private async _setupGitRepo() {
     // creating Github Repository
     await createRepository({
       name: this.projectName as string,
@@ -93,7 +97,14 @@ export = class extends Generator {
           message: 'Github two factor code'
         }).then(_ => _.otp)
     })
-    this.log('✔️  Remote repository created')
+
+    // add remote
+    await execP(
+      `git remote add origin git@github.com:${this.githubUsername}/${
+        this.projectName
+      }.git`
+    )
+    return this.log('✔️  Remote repository created')
   }
 
   private _getPkgJson() {
