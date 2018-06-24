@@ -8,6 +8,7 @@ import {createRepository} from './createRepository'
 import {execP} from './execP'
 import * as fs from 'fs-extra'
 import Generator = require('yeoman-generator')
+const debug = require('debug')('kips')
 
 const TEMPLATE_FILES = [
   '.gitignore',
@@ -120,6 +121,7 @@ export = class extends Generator {
    * Phase 2 (prompting)
    */
   async prompting() {
+    debug('start: prompting')
     const {
       description,
       githubUsername,
@@ -130,12 +132,14 @@ export = class extends Generator {
     this.githubUsername = githubUsername
     this.githubPassword = githubPassword
     this.projectName = appName
+    debug('stop: prompting')
   }
 
   /**
    * Phase 3 (configuring)
    */
-  async configuring() {
+  configuring() {
+    debug('start: configuring')
     TEMPLATE_FILES.forEach(file => {
       this.fs.copy(this.templatePath(`_${file}`), this.destinationPath(file))
     })
@@ -145,6 +149,7 @@ export = class extends Generator {
       this.destinationPath('README.md'),
       {appname: this.appname, description: this.projectDescription}
     )
+    debug('stop: configuring')
   }
 
   /**
@@ -155,6 +160,7 @@ export = class extends Generator {
    * Phase 5 (writing)
    */
   async writing() {
+    debug('start: writing')
     const pkgJson = this._getPkgJson()
 
     // Extend or create package.json file in destination path
@@ -162,6 +168,7 @@ export = class extends Generator {
     await this._setupGitRepo()
     await fs.mkdir(this.destinationPath('src'))
     await fs.mkdir(this.destinationPath('test'))
+    debug('stop: writing')
   }
 
   /**
@@ -171,8 +178,10 @@ export = class extends Generator {
   /**
    * Phase 7 (install)
    */
-  async install() {
-    await this.npmInstall(this._projectDependencies(), {'save-dev': true})
+  install() {
+    debug('start: install')
+    this.yarnInstall(this._projectDependencies(), {dev: true})
+    debug('stop: install')
   }
 
   /**
