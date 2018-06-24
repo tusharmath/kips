@@ -135,23 +135,23 @@ export = class extends Generator {
   }
 
   async install() {
-    await this.yarnInstall(
-      [
-        '@types/mocha',
-        '@types/node',
-        'cz-conventional-changelog',
-        'mocha',
-        'semantic-release',
-        'travis-deploy-once',
-        'ts-node',
-        'typescript',
-        'prettier'
-      ],
-      {
-        'save-dev': true
-      }
-    )
+    await this.yarnInstall(this._projectDependencies(), {dev: true})
   }
+
+  private _projectDependencies() {
+    return [
+      '@types/mocha',
+      '@types/node',
+      'cz-conventional-changelog',
+      'mocha',
+      'semantic-release',
+      'travis-deploy-once',
+      'ts-node',
+      'typescript',
+      'prettier'
+    ]
+  }
+
   end() {
     this.log('')
     this.log('Go to the project directory and then run — ')
