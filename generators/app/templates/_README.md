@@ -1,4 +1,4 @@
-# <%= appname %>
+# <%= projectName %>
 
-<%= description %>
+<%= projectDescription %>
 

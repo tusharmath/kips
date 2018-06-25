@@ -30,7 +30,7 @@ async function getAxiosPromise(p: RepoParams) {
   )
 }
 
-export const createRepository = async (p: RepoParams) => {
+export const createRemoteRepository = async (p: RepoParams) => {
   const response = await getAxiosPromise({
     name: p.name,
     username: p.username,
