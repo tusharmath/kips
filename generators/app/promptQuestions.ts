@@ -7,8 +7,6 @@ import Generator = require('yeoman-generator')
 export type UserPrompts = {
   keywords: string
   projectDescription: string
-  githubUsername: string
-  githubPassword: string
   projectName: string
 }
 
@@ -33,12 +31,6 @@ export const promptQuestions = (gen: Generator) => {
       type: 'input',
       name: 'keywords',
       message: 'Keywords'
-    },
-    {
-      type: 'input',
-      name: 'githubUsername',
-      message: 'Github username',
-      store: true
     },
     {
       type: 'password',
