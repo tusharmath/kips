@@ -18,13 +18,13 @@ export const promptQuestions = (gen: Generator) => {
   return gen.prompt([
     {
       type: 'input',
-      name: 'appName',
+      name: 'projectName',
       message: 'Project name',
       default: gen.appname.split(' ').join('-')
     },
     {
       type: 'input',
-      name: 'description',
+      name: 'projectDescription',
       message: 'Describe the project'
     },
     {

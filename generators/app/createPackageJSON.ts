@@ -1,4 +1,5 @@
 import Generator = require('yeoman-generator')
+import chalk from 'chalk'
 
 type PackageParams = {
   keywords: string
@@ -34,5 +35,6 @@ export const createPackageJSON = (gen: Generator, p: PackageParams) => {
     }
   }
 
+  gen.log(chalk.grey(JSON.stringify(pkgJson, null, 2)))
   gen.fs.extendJSON(gen.destinationPath('package.json'), pkgJson)
 }
