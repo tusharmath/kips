@@ -6,5 +6,6 @@ export const TEMPLATE_FILES = [
   '.gitignore',
   '.npmignore',
   '.travis.yml',
-  'tsconfig.json'
+  'tsconfig.json',
+  '.prettierrc'
 ]
