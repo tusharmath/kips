@@ -31,12 +31,6 @@ export const promptQuestions = (gen: Generator) => {
       type: 'input',
       name: 'keywords',
       message: 'Keywords'
-    },
-    {
-      type: 'password',
-      name: 'githubPassword',
-      message: 'Github password',
-      store: false
     }
   ]) as Promise<UserPrompts>
 }
