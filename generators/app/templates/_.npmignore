@@ -3,4 +3,7 @@
 !*.js
 *.tgz
 test/
+tsconfig.json
 .idea/
+.prettierrc
+*.yml
