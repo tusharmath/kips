@@ -12,10 +12,10 @@ import {createDirectories} from './makeDirectories'
 import Generator = require('yeoman-generator')
 
 export = class extends Generator {
-  private _props: UserPrompts = {
-    keywords: '',
-    projectDescription: '',
-    projectName: ''
+  private _props?: UserPrompts
+  private _getProps(): UserPrompts {
+    if (!this._props) throw new Error('Project information is missing')
+    return this._props
   }
 
   /**
@@ -33,7 +33,7 @@ export = class extends Generator {
    * Phase 3 (configuring)
    */
   configuring() {
-    copyTemplateFiles(this, this._props)
+    copyTemplateFiles(this, this._getProps())
   }
 
   /**
@@ -44,7 +44,7 @@ export = class extends Generator {
    * Phase 5 (writing)
    */
   async writing() {
-    createPackageJSON(this, this._props)
+    createPackageJSON(this, this._getProps())
     await createDirectories(this)
   }
 
