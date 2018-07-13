@@ -10,9 +10,12 @@ jobs:
   - stage: release
     node_js: stable
     deploy:
+      before_install: npm install -g greenkeeper-lockfile
       provider: script
       skip_cleanup: true
       script:
         - npm run semantic-release
+      before_script: greenkeeper-lockfile-update
+      after_script: greenkeeper-lockfile-upload
 script:
   - yarn test
