@@ -6,7 +6,7 @@ Personal yeoman generator to create OS projects.
 
 - [ ] [Greenkeeper](https://greenkeeper.io/)
 - [ ] [Semantic Release](https://github.com/semantic-release/semantic-release)
-- [ ] [TSLint](https://palantir.github.io/tslint/)
+- [x] [TSLint](https://palantir.github.io/tslint/)
 - [x] [@types](https://github.com/DefinitelyTyped/DefinitelyTyped)
 - [x] [Commitizen](http://commitizen.github.io/cz-cli/)
 - [x] [Mocha](https://mochajs.org/)
