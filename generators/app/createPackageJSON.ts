@@ -16,7 +16,7 @@ export const createPackageJSON = (gen: Generator, p: IProjectProperties) => {
     keywords: p.keywords.split(' '),
     license: 'ISC',
     main: 'index.js',
-    name: p.projectName,
+    name: `@tusharmath/${p.projectName}`,
     repository: {
       type: 'git',
       url: `https://github.com/tusharmath/${p.projectName}.git`
