@@ -22,12 +22,12 @@ export const createPackageJSON = (gen: Generator, p: IProjectProperties) => {
       url: `https://github.com/tusharmath/${p.projectName}.git`
     },
     scripts: {
+      lint: 'tslint --project .',
       prepublishOnly: 'tsc -d',
       prettier:
         "git ls-files | grep '.ts$' | xargs prettier --write --config=.prettierrc",
-      test: 'mocha --require=ts-node/register test/*.ts',
-
       'semantic-release': 'semantic-release',
+      test: 'mocha --require=ts-node/register test/*.ts',
       'travis-deploy-once': 'travis-deploy-once'
     },
     version: '0.0.0-development'
