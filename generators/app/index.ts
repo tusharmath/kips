@@ -4,48 +4,21 @@
 
 'use strict'
 
-import {promptQuestions, UserPrompts} from './promptQuestions'
+import Generator = require('yeoman-generator')
+import {copyTemplateFiles} from './copyTemplateFiles'
 import {createPackageJSON} from './createPackageJSON'
 import {installPackages} from './installPackages'
-import {copyTemplateFiles} from './copyTemplateFiles'
 import {createDirectories} from './makeDirectories'
-import Generator = require('yeoman-generator')
+import {promptQuestions, UserPrompts} from './promptQuestions'
 
 export = class extends Generator {
   private _props?: UserPrompts
-  private _getProps(): UserPrompts {
-    if (!this._props) throw new Error('Project information is missing')
-    return this._props
-  }
-
-  /**
-   * Phase 1 (initializing)
-   */
-
-  /**
-   * Phase 2 (prompting)
-   */
-  async prompting(): Promise<void> {
-    this._props = await promptQuestions(this)
-  }
 
   /**
    * Phase 3 (configuring)
    */
-  configuring() {
+  public configuring() {
     copyTemplateFiles(this, this._getProps())
-  }
-
-  /**
-   * Phase 4 (default)
-   */
-
-  /**
-   * Phase 5 (writing)
-   */
-  async writing() {
-    createPackageJSON(this, this._getProps())
-    await createDirectories(this)
   }
 
   /**
@@ -55,8 +28,35 @@ export = class extends Generator {
   /**
    * Phase 7 (install)
    */
-  install() {
+  public install() {
     installPackages(this)
+  }
+
+  /**
+   * Phase 1 (initializing)
+   */
+
+  /**
+   * Phase 2 (prompting)
+   */
+  public async prompting(): Promise<void> {
+    this._props = await promptQuestions(this)
+  }
+
+  /**
+   * Phase 4 (default)
+   */
+
+  /**
+   * Phase 5 (writing)
+   */
+  public async writing() {
+    createPackageJSON(this, this._getProps())
+    await createDirectories(this)
+  }
+  private _getProps(): UserPrompts {
+    if (!this._props) { throw new Error('Project information is missing') }
+    return this._props
   }
 
   /**

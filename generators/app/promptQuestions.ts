@@ -4,7 +4,7 @@
 
 import Generator = require('yeoman-generator')
 
-export type UserPrompts = {
+export interface UserPrompts {
   keywords: string
   projectDescription: string
   projectName: string
@@ -14,8 +14,8 @@ export type UserPrompts = {
  * Asks all the questions initially
  * @param gen
  */
-export const promptQuestions = (gen: Generator) => {
-  return gen.prompt([
+export const promptQuestions = (gen: Generator) =>
+  gen.prompt([
     {
       type: 'input',
       name: 'projectName',
@@ -33,4 +33,3 @@ export const promptQuestions = (gen: Generator) => {
       message: 'Keywords'
     }
   ]) as Promise<UserPrompts>
-}

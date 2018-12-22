@@ -1,10 +1,10 @@
-import Generator = require('yeoman-generator')
 import chalk from 'chalk'
+import Generator = require('yeoman-generator')
 
-type PackageParams = {
+interface PackageParams {
   keywords: string
-  projectName: string
   projectDescription: string
+  projectName: string
 }
 
 export const createPackageJSON = (gen: Generator, p: PackageParams) => {

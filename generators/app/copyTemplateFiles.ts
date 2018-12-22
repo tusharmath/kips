@@ -2,12 +2,12 @@
  * Created by tushar on 25/06/18
  */
 
-import {TEMPLATE_FILES} from './templateFiles'
 import Generator = require('yeoman-generator')
+import {TEMPLATE_FILES} from './templateFiles'
 
 export const copyTemplateFiles = (
   gen: Generator,
-  p: {projectName: string; projectDescription: string}
+  p: {projectDescription: string; projectName: string }
 ) => {
   TEMPLATE_FILES.forEach(file => {
     const tmpFile = file
