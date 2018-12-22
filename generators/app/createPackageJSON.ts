@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import Generator = require('yeoman-generator')
+import * as Generator from 'yeoman-generator'
 
 interface PackageParams {
   keywords: string

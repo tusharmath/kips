@@ -2,7 +2,7 @@
  * Created by tushar on 25/06/18
  */
 
-import Generator = require('yeoman-generator')
+import * as Generator from 'yeoman-generator'
 import {TEMPLATE_FILES} from './templateFiles'
 
 export const copyTemplateFiles = (

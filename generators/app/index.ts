@@ -4,7 +4,7 @@
 
 'use strict'
 
-import Generator = require('yeoman-generator')
+import * as Generator from 'yeoman-generator'
 import {copyTemplateFiles} from './copyTemplateFiles'
 import {createPackageJSON} from './createPackageJSON'
 import {installPackages} from './installPackages'

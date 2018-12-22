@@ -2,7 +2,7 @@
  * Created by tushar on 24/06/18
  */
 
-import Generator = require('yeoman-generator')
+import * as Generator from 'yeoman-generator'
 
 export interface UserPrompts {
   keywords: string
