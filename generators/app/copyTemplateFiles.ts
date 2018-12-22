@@ -12,7 +12,7 @@ import {TEMPLATE_FILES} from './templateFiles'
 export const copyTemplateFiles = (gen: Generator, p: IProjectProperties) => {
   TEMPLATE_FILES.forEach(file => {
     const tmpFile = file
-    const outFile = file.replace(/$_/, '')
+    const outFile = file.replace(/^_/, '')
     gen.fs.copyTpl(gen.templatePath(tmpFile), gen.destinationPath(outFile), {
       projectDescription: p.projectDescription,
       projectName: p.projectName
