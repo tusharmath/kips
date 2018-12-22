@@ -11,12 +11,13 @@ export const installPackages = (gen: Generator) => {
       '@types/node',
       'cz-conventional-changelog',
       'mocha',
+      'prettier',
       'semantic-release',
       'travis-deploy-once',
       'ts-node',
-      'typescript',
-      'prettier',
-      'tslint'
+      'tslint-config-prettier',
+      'tslint',
+      'typescript'
     ],
     {dev: true}
   )
