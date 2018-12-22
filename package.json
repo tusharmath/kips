@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^10.12.12",
+    "@types/npm-name": "^5.0.0",
     "@types/ramda": "^0.25.42",
     "@types/yeoman-generator": "^3.0.1",
     "cz-conventional-changelog": "^2.1.0",
@@ -25,6 +26,7 @@
     "chalk": "^2.4.1",
     "debug": "^4.1.0",
     "fs-extra": "^7.0.1",
+    "npm-name": "^5.0.1",
     "ramda": "^0.26.1",
     "yeoman-generator": "^3.1.1"
   },

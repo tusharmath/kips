@@ -2,6 +2,7 @@
  * Created by tushar on 24/06/18
  */
 
+import * as npmName from 'npm-name'
 import * as Generator from 'yeoman-generator'
 import {IProjectProperties} from './projectProperties'
 
@@ -15,7 +16,11 @@ export const promptQuestions = async (gen: Generator) =>
       message: 'Project name',
       name: 'projectName',
       store: true,
-      type: 'input'
+      type: 'input',
+      validate: async input =>
+        npmName(input).then(i =>
+          i ? true : `${input} is unavailable on npm, try something else.`
+        )
     },
     {
       message: 'Describe the project',
