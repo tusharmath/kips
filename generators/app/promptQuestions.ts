@@ -4,7 +4,7 @@
 
 import * as Generator from 'yeoman-generator'
 
-export interface UserPrompts {
+export interface IUserPrompts {
   keywords: string
   projectDescription: string
   projectName: string
@@ -12,24 +12,23 @@ export interface UserPrompts {
 
 /**
  * Asks all the questions initially
- * @param gen
  */
 export const promptQuestions = (gen: Generator) =>
   gen.prompt([
     {
-      type: 'input',
-      name: 'projectName',
+      default: gen.appname.split(' ').join('-'),
       message: 'Project name',
-      default: gen.appname.split(' ').join('-')
+      name: 'projectName',
+      type: 'input'
     },
     {
-      type: 'input',
+      message: 'Describe the project',
       name: 'projectDescription',
-      message: 'Describe the project'
+      type: 'input'
     },
     {
-      type: 'input',
+      message: 'Keywords',
       name: 'keywords',
-      message: 'Keywords'
+      type: 'input'
     }
-  ]) as Promise<UserPrompts>
+  ]) as Promise<IUserPrompts>

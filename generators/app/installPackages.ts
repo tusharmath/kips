@@ -16,7 +16,7 @@ export const installPackages = (gen: Generator) => {
       'ts-node',
       'typescript',
       'prettier',
-      "tslint"
+      'tslint'
     ],
     {dev: true}
   )

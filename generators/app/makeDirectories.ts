@@ -6,7 +6,7 @@ import * as fs from 'fs-extra'
 
 import * as Generator from 'yeoman-generator'
 
-export async function createDirectories(gen: Generator) {
+export const createDirectories = async (gen: Generator) => {
   await fs.mkdir(gen.destinationPath('src'))
   await fs.mkdir(gen.destinationPath('test'))
 }
