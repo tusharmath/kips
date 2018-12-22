@@ -10,12 +10,11 @@ export const copyTemplateFiles = (
   p: {projectName: string; projectDescription: string}
 ) => {
   TEMPLATE_FILES.forEach(file => {
-    gen.fs.copy(gen.templatePath(`_${file}`), gen.destinationPath(file))
+    const tmpFile = file
+    const outFile = file.replace(/$_/, '')
+    gen.fs.copyTpl(gen.templatePath(tmpFile), gen.destinationPath(outFile), {
+      projectName: p.projectName,
+      projectDescription: p.projectDescription
+    })
   })
-
-  gen.fs.copyTpl(
-    gen.templatePath('_README.md'),
-    gen.destinationPath('README.md'),
-    {projectName: p.projectName, projectDescription: p.projectDescription}
-  )
 }

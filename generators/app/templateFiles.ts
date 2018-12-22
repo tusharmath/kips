@@ -2,10 +2,9 @@
  * Created by tushar on 24/06/18
  */
 
-export const TEMPLATE_FILES = [
-  '.gitignore',
-  '.npmignore',
-  '.travis.yml',
-  'tsconfig.json',
-  '.prettierrc'
-]
+import * as fs from 'fs-extra'
+import * as path from 'path'
+
+export const TEMPLATE_FILES = fs.readdirSync(
+  path.resolve(__dirname, 'templates')
+)
