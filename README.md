@@ -1,4 +1,8 @@
 # Kips
+[![Build Status](https://travis-ci.com/tusharmath/kips.svg?branch=master)](https://travis-ci.com/tusharmath/kips)
+![npm](https://img.shields.io/npm/v/kips.svg)
+![npm (scoped)](https://img.shields.io/npm/v/kips.svg)
+
 
 Personal yeoman generator to create OS projects.
 

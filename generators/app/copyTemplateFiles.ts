@@ -3,12 +3,13 @@
  */
 
 import * as Generator from 'yeoman-generator'
+import {IProjectProperties} from './projectProperties'
 import {TEMPLATE_FILES} from './templateFiles'
 
-export const copyTemplateFiles = (
-  gen: Generator,
-  p: {projectDescription: string; projectName: string}
-) => {
+/**
+ * Copy template files to the project
+ */
+export const copyTemplateFiles = (gen: Generator, p: IProjectProperties) => {
   TEMPLATE_FILES.forEach(file => {
     const tmpFile = file
     const outFile = file.replace(/$_/, '')

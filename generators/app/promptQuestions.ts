@@ -3,17 +3,12 @@
  */
 
 import * as Generator from 'yeoman-generator'
-
-export interface IUserPrompts {
-  keywords: string
-  projectDescription: string
-  projectName: string
-}
+import {IProjectProperties} from './projectProperties'
 
 /**
  * Asks all the questions initially
  */
-export const promptQuestions = (gen: Generator) =>
+export const promptQuestions = async (gen: Generator) =>
   gen.prompt([
     {
       default: gen.appname.split(' ').join('-'),
@@ -31,4 +26,4 @@ export const promptQuestions = (gen: Generator) =>
       name: 'keywords',
       type: 'input'
     }
-  ]) as Promise<IUserPrompts>
+  ]) as Promise<IProjectProperties>

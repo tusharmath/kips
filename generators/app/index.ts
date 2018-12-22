@@ -9,10 +9,14 @@ import {copyTemplateFiles} from './copyTemplateFiles'
 import {createPackageJSON} from './createPackageJSON'
 import {installPackages} from './installPackages'
 import {createDirectories} from './makeDirectories'
-import {IUserPrompts, promptQuestions} from './promptQuestions'
+import {IProjectProperties} from './projectProperties'
+import {promptQuestions} from './promptQuestions'
 
 export = class extends Generator {
-  private props?: IUserPrompts
+  /**
+   * User inputted properties of the project being created
+   */
+  private props?: IProjectProperties
 
   /**
    * Phase 3 (configuring)
@@ -54,8 +58,12 @@ export = class extends Generator {
     createPackageJSON(this, this._getProps())
     await createDirectories(this)
   }
-  private _getProps(): IUserPrompts {
-    if (!this.props) {
+
+  /**
+   * Gets the properties if they exist
+   */
+  private _getProps(): IProjectProperties {
+    if (this.props === undefined) {
       throw new Error('Project information is missing')
     }
 

@@ -1,15 +1,10 @@
 import chalk from 'chalk'
 import * as Generator from 'yeoman-generator'
-
-interface IPackageParams {
-  keywords: string
-  projectDescription: string
-  projectName: string
-}
+import {IProjectProperties} from './projectProperties'
 
 export const TAB_SPACING = 2
 
-export const createPackageJSON = (gen: Generator, p: IPackageParams) => {
+export const createPackageJSON = (gen: Generator, p: IProjectProperties) => {
   const pkgJson = {
     author: 'Tushar Mathur <tusharmath@gmail.com>',
     config: {
