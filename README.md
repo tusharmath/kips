@@ -6,7 +6,11 @@
 
 Personal yeoman generator to create OS projects.
 
-# Stack
+# Pre Installation
+
+1. "yo kips"
+
+# Installation
 
 - [ ] [Greenkeeper](https://greenkeeper.io/)
 - [ ] [Semantic Release](https://github.com/semantic-release/semantic-release)
