@@ -9,7 +9,8 @@
       "member-variable-declaration"
     ],
     "no-any": true,
-    "no-inferred-empty-object-type": true
+    "no-inferred-empty-object-type": true,
+    "completed-docs": false
   },
   "rulesDirectory": []
 }
