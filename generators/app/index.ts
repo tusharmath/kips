@@ -6,6 +6,7 @@
 
 import * as Generator from 'yeoman-generator'
 import {copyTemplateFiles} from './copyTemplateFiles'
+import {createLogger, ILogger} from './createLogger'
 import {createPackageJSON} from './createPackageJSON'
 import {installPackages} from './installPackages'
 import {createDirectories} from './makeDirectories'
@@ -13,6 +14,11 @@ import {IProjectProperties} from './projectProperties'
 import {promptQuestions} from './promptQuestions'
 
 export = class extends Generator {
+  /**
+   * Logger module to help log stuff
+   */
+  public logger: ILogger = createLogger(this)
+
   /**
    * User inputted properties of the project being created
    */
