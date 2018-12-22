@@ -4,7 +4,8 @@
   "description": "Personal stack for @tusharmath",
   "scripts": {
     "lint": "tslint --project .",
-    "prettier": "prettier --write --config=.prettierrc ."
+    "prettier": "prettier --write --config=.prettierrc .",
+    "postinstall": "tsc"
   },
   "author": "Tushar Mathur <tusharmath@gmail.com>",
   "license": "ISC",
