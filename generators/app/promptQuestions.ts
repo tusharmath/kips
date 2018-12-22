@@ -9,17 +9,21 @@ import {IProjectProperties} from './projectProperties'
 /**
  * Asks all the questions initially
  */
-export const promptQuestions = async (gen: Generator) =>
-  gen.prompt([
+export const promptQuestions = async (gen: Generator) => {
+  const appName = gen.appname.split(' ').join('-')
+
+  return gen.prompt([
     {
-      default: gen.appname.split(' ').join('-'),
+      default: appName,
       message: 'Project name',
       name: 'projectName',
       store: true,
       type: 'input',
       validate: async input =>
-        npmName(input).then(i =>
-          i ? true : `${input} is unavailable on npm, try something else.`
+        npmName(input).then(isAvailable =>
+          !isAvailable && input !== appName
+            ? `${input} is unavailable on npm`
+            : true
         )
     },
     {
@@ -35,3 +39,4 @@ export const promptQuestions = async (gen: Generator) =>
       type: 'input'
     }
   ]) as Promise<IProjectProperties>
+}
