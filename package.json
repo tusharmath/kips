@@ -2,7 +2,9 @@
   "name": "generator-kips",
   "version": "1.0.0",
   "description": "Personal stack for @tusharmath",
-  "scripts": {},
+  "scripts": {
+    "lint": "tslint --project ."
+  },
   "author": "Tushar Mathur <tusharmath@gmail.com>",
   "license": "ISC",
   "devDependencies": {
@@ -11,6 +13,8 @@
     "@types/yeoman-generator": "^3.0.1",
     "cz-conventional-changelog": "^2.1.0",
     "prettier": "^1.15.3",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
   },
   "dependencies": {
