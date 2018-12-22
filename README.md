@@ -1,8 +1,8 @@
 # Kips
+
 [![Build Status](https://travis-ci.com/tusharmath/kips.svg?branch=master)](https://travis-ci.com/tusharmath/kips)
 ![npm](https://img.shields.io/npm/v/kips.svg)
 ![npm (scoped)](https://img.shields.io/npm/v/kips.svg)
-
 
 Personal yeoman generator to create OS projects.
 
@@ -18,3 +18,17 @@ Personal yeoman generator to create OS projects.
 - [x] [Travis](http://travis-ci.com/)
 - [x] [Typescript](http://typescriptlang.org/)
 - [x] [Yarn](https://yarnpkg.com/lang/en/)
+
+# Post Installation
+
+1. Setup travis
+
+   ```bash
+   $ travis sync
+   ```
+
+2. Setup Semantic Release
+
+   ```bash
+   $ semantic-release-cli setup
+   ```
