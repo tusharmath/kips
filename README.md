@@ -36,3 +36,5 @@ Personal yeoman generator to create OS projects.
    ```bash
    $ semantic-release-cli setup
    ```
+
+   **NOTE:** Use `Travis CI Pro` account.
