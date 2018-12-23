@@ -2,6 +2,7 @@
  * Created by tushar on 25/06/18
  */
 
+import * as Case from 'change-case'
 import * as Generator from 'yeoman-generator'
 import {IProjectProperties} from './projectProperties'
 import {TEMPLATE_FILES} from './templateFiles'
@@ -15,7 +16,8 @@ export const copyTemplateFiles = (gen: Generator, p: IProjectProperties) => {
     const outFile = file.replace(/\.ejs$/, '')
     gen.fs.copyTpl(gen.templatePath(tmpFile), gen.destinationPath(outFile), {
       projectDescription: p.projectDescription,
-      projectName: p.projectName
+      projectName: p.projectName,
+      projectNamePascal: Case.pascalCase(p.projectName)
     })
   })
 }
