@@ -10,7 +10,8 @@
     ],
     "no-any": true,
     "no-inferred-empty-object-type": true,
-    "completed-docs": false
+    "completed-docs": false,
+    "no-parameter-properties": false
   },
   "rulesDirectory": []
 }
