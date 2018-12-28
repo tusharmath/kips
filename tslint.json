@@ -10,7 +10,9 @@
     ],
     "no-any": true,
     "no-inferred-empty-object-type": true,
-    "completed-docs": false
+    "completed-docs": false,
+    "comment-format": false,
+    "file-name-casing": [true, "kebab-case"]
   },
   "rulesDirectory": []
 }
