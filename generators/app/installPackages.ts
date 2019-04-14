@@ -7,8 +7,10 @@ import * as Generator from 'yeoman-generator'
 export const installPackages = (gen: Generator) => {
   gen.yarnInstall(
     [
+      '@types/chai',
       '@types/mocha',
       '@types/node',
+      'chai',
       'cz-conventional-changelog',
       'mocha',
       'prettier',
