@@ -19,6 +19,7 @@ export const installPackages = (gen: Generator) => {
       'ts-node',
       'tslint-config-prettier',
       'tslint',
+      'typedoc',
       'typescript-tslint-plugin',
       'typescript'
     ],

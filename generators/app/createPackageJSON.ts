@@ -22,6 +22,7 @@ export const createPackageJSON = (gen: Generator, p: IProjectProperties) => {
       url: `https://github.com/tusharmath/${p.projectName}.git`
     },
     scripts: {
+      'create-docs': 'typedoc',
       lint: 'tslint --project .',
       prepublishOnly: 'tsc -d',
       prettier:
