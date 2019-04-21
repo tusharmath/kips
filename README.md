@@ -14,12 +14,14 @@ Personal yeoman generator to create OS projects.
 
 - [ ] [Greenkeeper](https://greenkeeper.io/)
 - [ ] [Semantic Release](https://github.com/semantic-release/semantic-release)
-- [x] [TSLint](https://palantir.github.io/tslint/)
+- [ ] [Github](https://github.com)
+- [x] [Type Doc](https://https://typedoc.org)
 - [x] [@types](https://github.com/DefinitelyTyped/DefinitelyTyped)
 - [x] [Commitizen](http://commitizen.github.io/cz-cli/)
 - [x] [Mocha](https://mochajs.org/)
 - [x] [Prettier](https://prettier.io)
 - [x] [Travis](http://travis-ci.com/)
+- [x] [TSLint](https://palantir.github.io/tslint/)
 - [x] [Typescript](http://typescriptlang.org/)
 - [x] [Yarn](https://yarnpkg.com/lang/en/)
 
