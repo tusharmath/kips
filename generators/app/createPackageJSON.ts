@@ -24,7 +24,8 @@ export const createPackageJSON = (gen: Generator, p: IProjectProperties) => {
     scripts: {
       'create-docs': 'typedoc',
       lint: 'tslint --project .',
-      postInstall: "yarn tsc",
+      // NOTE: Postinstall script is called even after installation
+      // postInstall: 'yarn tsc',
       prepublishOnly: 'tsc -d',
       prettier:
         "git ls-files | grep -E '.*\\.(ts|md|json)$' | xargs prettier --write --config=.prettierrc",
