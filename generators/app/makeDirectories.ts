@@ -33,4 +33,5 @@ export const createDirectories = async (G: Generator) => {
   const mkDir = createDirectoryMaker(G)
   await mkDir('src')
   await mkDir('test')
+  await mkDir('src/internals')
 }
