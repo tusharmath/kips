@@ -2,6 +2,9 @@
   "defaultSeverity": "error",
   "extends": ["tslint:all", "tslint-config-prettier"],
   "rules": {
+    "no-unbound-method": {
+      "options": ["ignore-static"]
+    },
     "typedef": [true, "call-signature", "parameter", "arrow-call-signature"],
     "no-parameter-properties": false,
     "no-implicit-dependencies": [true, "dev"],
