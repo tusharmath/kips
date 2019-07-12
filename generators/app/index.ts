@@ -5,6 +5,7 @@
 'use strict'
 
 import * as Generator from 'yeoman-generator'
+
 import {copyTemplateFiles} from './copyTemplateFiles'
 import {createLogger, ILogger} from './createLogger'
 import {createPackageJSON} from './createPackageJSON'

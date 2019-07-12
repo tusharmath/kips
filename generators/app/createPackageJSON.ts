@@ -1,5 +1,6 @@
 import chalk from 'chalk'
 import * as Generator from 'yeoman-generator'
+
 import {IProjectProperties} from './projectProperties'
 
 export const TAB_SPACING = 2

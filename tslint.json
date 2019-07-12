@@ -12,7 +12,7 @@
     "no-inferred-empty-object-type": true,
     "completed-docs": false,
     "comment-format": false,
-    "file-name-casing": [true, "kebab-case"],
+    "file-name-casing": [true, "camel-case"],
     "interface-over-type-literal": false
   },
   "rulesDirectory": []

@@ -4,6 +4,7 @@
 
 import * as Case from 'change-case'
 import * as Generator from 'yeoman-generator'
+
 import {IProjectProperties} from './projectProperties'
 import {TEMPLATE_FILES} from './templateFiles'
 

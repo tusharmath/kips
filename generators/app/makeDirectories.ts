@@ -1,10 +1,9 @@
 import * as fs from 'fs-extra'
+import * as Generator from 'yeoman-generator'
 
 /**
  * Created by tushar on 25/06/18
  */
-
-import * as Generator from 'yeoman-generator'
 
 const createDirectoryMaker = (G: Generator) => async (path: string) => {
   const gPath = G.destinationPath(path)
