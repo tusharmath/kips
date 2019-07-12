@@ -5,10 +5,14 @@
 import * as npmName from 'npm-name'
 import * as Generator from 'yeoman-generator'
 
+import {IProjectProperties} from './projectProperties'
+
 /**
  * Asks all the questions initially
  */
-export const promptQuestions = async (gen: Generator) => {
+export const promptQuestions = async (
+  gen: Generator
+): Promise<IProjectProperties> => {
   const appName = gen.appname.split(' ').join('-')
 
   return gen.prompt([
