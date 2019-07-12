@@ -23,11 +23,13 @@ export const promptQuestions = async (
       store: true,
       type: 'input',
       validate: async input =>
-        npmName(input).then(isAvailable =>
-          !isAvailable && input !== appName
-            ? `${input} is unavailable on npm`
-            : true
-        )
+        npmName(input)
+          .then(isAvailable =>
+            !isAvailable && input !== appName
+              ? `${input} is unavailable on npm`
+              : true
+          )
+          .catch((err: Error) => err.message)
     },
     {
       message: 'Describe the project',
