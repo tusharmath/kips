@@ -8,9 +8,11 @@ export const installPackages = (gen: Generator) => {
   gen.yarnInstall(
     [
       '@types/chai',
+      '@types/chai-spies',
       '@types/mocha',
       '@types/node',
       'chai',
+      'chai-spies',
       'cz-conventional-changelog',
       'mocha',
       'prettier',

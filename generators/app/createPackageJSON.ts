@@ -31,7 +31,7 @@ export const createPackageJSON = (gen: Generator, p: IProjectProperties) => {
       prettier:
         "git ls-files | grep -E '.*\\.(ts|md|json)$' | xargs prettier --write --config=.prettierrc",
       'semantic-release': 'semantic-release',
-      test: 'mocha --require=ts-node/register --watch-extensions ts test/*.ts',
+      test: 'mocha',
       'travis-deploy-once': 'travis-deploy-once --pro'
     },
     version: '0.0.0-development'
