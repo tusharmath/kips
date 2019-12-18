@@ -18,7 +18,6 @@ export const installPackages = (gen: Generator) => {
       'prettier',
       'semantic-release',
       'travis-deploy-once',
-      'ts-node',
       'tslint-config-prettier',
       'tslint',
       'typedoc',
